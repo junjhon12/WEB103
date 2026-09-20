@@ -1,90 +1,94 @@
 const renderLures = async () => {
-  const response = await fetch('/lures')
-  const data = await response.json()
-  const mainContent = document.getElementById('main-content')
+  try {
+    const response = await fetch('/lures')
+    const data = await response.json()
+    const mainContent = document.getElementById('main-content')
 
-  if (data && data.length > 0) {
-    data.forEach(lure => {
-      // Card wrapper
-      const card = document.createElement('div')
-      card.classList.add('card')
+    if (data && data.length > 0) {
+      data.forEach(lure => {
+        // Card wrapper
+        const card = document.createElement('div')
+        card.classList.add('card')
 
-      // Top container (image)
-      const topContainer = document.createElement('div')
-      topContainer.classList.add('top-container')
-      topContainer.style.backgroundImage = `url(${lure.imageUrl})`
+        // Top container (image)
+        const topContainer = document.createElement('div')
+        topContainer.classList.add('top-container')
+        topContainer.style.backgroundImage = `url(${lure.imageUrl})`
 
-      // Bottom container (text info)
-      const bottomContainer = document.createElement('div')
-      bottomContainer.classList.add('bottom-container')
+        // Bottom container
+        const bottomContainer = document.createElement('div')
+        bottomContainer.classList.add('bottom-container')
 
-      const name = document.createElement('h3')
-      name.textContent = lure.name
-      bottomContainer.appendChild(name)
+        const name = document.createElement('h3')
+        name.textContent = lure.name
+        bottomContainer.appendChild(name)
 
-      const brandName = document.createElement('h4')
-      brandName.textContent = lure.brand
-      bottomContainer.appendChild(brandName)
+        const brandName = document.createElement('h4')
+        brandName.textContent = lure.brand
+        bottomContainer.appendChild(brandName)
 
-      const category = document.createElement('h5')
-      category.textContent = lure.category
-      bottomContainer.appendChild(category)
+        // Specs badges (Category, Type, Color, Size, Weight, Depth)
+        const specs = document.createElement('div')
+        specs.classList.add('specs')
 
-      const type = document.createElement('h5')
-      type.textContent = lure.type
-      bottomContainer.appendChild(type)
+        const specItems = [
+          lure.category,
+          lure.type,
+          lure.color,
+          lure.size,
+          lure.weight,
+          lure.divingDepth
+        ]
 
-      const color = document.createElement('h5')
-      color.textContent = `Color: ${lure.color}`
-      bottomContainer.appendChild(color)
+        specItems.forEach(item => {
+          if (item) {
+            const span = document.createElement('span')
+            span.textContent = item
+            specs.appendChild(span)
+          }
+        })
+        bottomContainer.appendChild(specs)
 
-      const size = document.createElement('h5')
-      size.textContent = `Size: ${lure.size}`
-      bottomContainer.appendChild(size)
+        // Footer (Price, Rating, Stock)
+        const footer = document.createElement('div')
+        footer.classList.add('footer')
 
-      const weight = document.createElement('h5')
-      weight.textContent = `Weight: ${lure.weight}`
-      bottomContainer.appendChild(weight)
+        const price = document.createElement('span')
+        price.classList.add('price')
+        price.textContent = `$${lure.price.toFixed(2)}`
+        footer.appendChild(price)
 
-      const divingDepth = document.createElement('h5')
-      divingDepth.textContent = `Depth: ${lure.divingDepth}`
-      bottomContainer.appendChild(divingDepth)
+        const rating = document.createElement('span')
+        rating.classList.add('rating')
+        rating.textContent = `⭐ ${lure.rating}`
+        footer.appendChild(rating)
 
-      const targetSpecies = document.createElement('h5')
-      targetSpecies.textContent = `Targets: ${lure.targetSpecies.join(', ')}`
-      bottomContainer.appendChild(targetSpecies)
+        const stock = document.createElement('span')
+        stock.classList.add('stock', lure.inStock ? 'in' : 'out')
+        stock.textContent = lure.inStock ? 'In Stock' : 'Out of Stock'
+        footer.appendChild(stock)
 
-      const price = document.createElement('h5')
-      price.textContent = `$${lure.price.toFixed(2)}`
-      bottomContainer.appendChild(price)
+        bottomContainer.appendChild(footer)
 
-      const rating = document.createElement('h5')
-      rating.textContent = `⭐ ${lure.rating} (${lure.reviews} reviews)`
-      bottomContainer.appendChild(rating)
+        // Assemble the card
+        card.appendChild(topContainer)
+        card.appendChild(bottomContainer)
 
-      const stock = document.createElement('h5')
-      stock.textContent = lure.inStock
-        ? `In Stock (${lure.stockCount})`
-        : 'Out of Stock'
-      bottomContainer.appendChild(stock)
+        // Click → go to detail page
+        card.addEventListener('click', () => {
+          window.location = `/lures/${lure.id}`
+        })
 
-      // Assemble the card
-      card.appendChild(topContainer)
-      card.appendChild(bottomContainer)
-
-      // Click → go to detail page
-      card.addEventListener('click', () => {
-        window.location = `/lures/${lure.id}`
+        mainContent.appendChild(card)
       })
-
-      mainContent.appendChild(card)
-    })
-  } else {
-    const message = document.createElement('h2')
-    message.textContent = 'No Lures Available 😞'
-    mainContent.appendChild(message)
+    } else {
+      const message = document.createElement('h2')
+      message.textContent = 'No Lures Available 😞'
+      mainContent.appendChild(message)
+    }
+  } catch (error) {
+    console.error('Error fetching lures:', error)
   }
-
 }
 
 renderLures()
