@@ -168,3 +168,129 @@ header {
 .footer .stock.out {
   color: #c92a2a;
 }
+
+/* =========================================
+   Lure Detail Page Styles
+   ========================================= */
+
+.lure-detail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Left side: Image */
+.detail-image-container {
+  flex: 1 1 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Right side: Info */
+.detail-info {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-header h1 {
+  margin: 0 0 5px 0;
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+.detail-header h3 {
+  margin: 0;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.detail-price-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2b8a3e;
+}
+
+.detail-rating {
+  color: #f59f00;
+  font-weight: 600;
+}
+
+.detail-stock {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.detail-stock.in { color: #2b8a3e; }
+.detail-stock.out { color: #c92a2a; }
+
+.detail-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #495057;
+  margin: 0;
+}
+
+/* Specs Grid */
+.detail-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.spec-item {
+  color: #495057;
+}
+
+.spec-item strong {
+  color: #1a1a1a;
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Species Tags */
+.detail-species {
+  font-size: 0.9rem;
+  color: #1a1a1a;
+}
+
+.species-tag {
+  display: inline-block;
+  background-color: #e7f5ff;
+  color: #1971c2;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 5px;
+  margin-top: 5px;
+}

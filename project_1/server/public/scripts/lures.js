@@ -6,16 +6,13 @@ const renderLures = async () => {
 
     if (data && data.length > 0) {
       data.forEach(lure => {
-        // Card wrapper
         const card = document.createElement('div')
         card.classList.add('card')
 
-        // Top container (image)
         const topContainer = document.createElement('div')
         topContainer.classList.add('top-container')
         topContainer.style.backgroundImage = `url(${lure.imageUrl})`
 
-        // Bottom container
         const bottomContainer = document.createElement('div')
         bottomContainer.classList.add('bottom-container')
 
@@ -27,19 +24,9 @@ const renderLures = async () => {
         brandName.textContent = lure.brand
         bottomContainer.appendChild(brandName)
 
-        // Specs badges (Category, Type, Color, Size, Weight, Depth)
         const specs = document.createElement('div')
         specs.classList.add('specs')
-
-        const specItems = [
-          lure.category,
-          lure.type,
-          lure.color,
-          lure.size,
-          lure.weight,
-          lure.divingDepth
-        ]
-
+        const specItems = [lure.category, lure.type, lure.color, lure.size, lure.weight, lure.divingDepth]
         specItems.forEach(item => {
           if (item) {
             const span = document.createElement('span')
@@ -49,7 +36,6 @@ const renderLures = async () => {
         })
         bottomContainer.appendChild(specs)
 
-        // Footer (Price, Rating, Stock)
         const footer = document.createElement('div')
         footer.classList.add('footer')
 
@@ -70,11 +56,9 @@ const renderLures = async () => {
 
         bottomContainer.appendChild(footer)
 
-        // Assemble the card
         card.appendChild(topContainer)
         card.appendChild(bottomContainer)
 
-        // Click → go to detail page
         card.addEventListener('click', () => {
           window.location = `/lures/${lure.id}`
         })
