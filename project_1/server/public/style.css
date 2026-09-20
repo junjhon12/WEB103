@@ -410,3 +410,42 @@ header {
     font-size: 1.7rem;
   }
 }
+
+.tag-pill {
+  display: inline-block;
+  background-color: #f5ecdc;
+  color: #6b4a1c;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-right: 6px;
+  margin-top: 6px;
+  border: 1px solid #ecdfc7;
+}
+
+.fof-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.fof h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #6b2737;
+  font-size: 3rem;
+  margin: 0 0 10px 0;
+}
+
+.fof a {
+  color: #c9761b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fof a:hover {
+  text-decoration: underline;
+}

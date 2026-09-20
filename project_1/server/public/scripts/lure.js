@@ -91,6 +91,11 @@ const renderLureDetail = async () => {
           <strong>Target Species:</strong> 
           ${lure.targetSpecies.map(species => `<span class="species-tag">${species}</span>`).join('')}
         </div>
+
+        <div class="detail-tags">
+          <strong>Tags:</strong>
+          ${lure.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join('')}
+        </div>
       </div>
     `
   } catch (error) {
