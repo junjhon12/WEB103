@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^18.0.1",
     "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
     "nodemon": "^2.0.22"
   }
 }

@@ -72,6 +72,10 @@ const renderLures = async () => {
     }
   } catch (error) {
     console.error('Error fetching lures:', error)
+    const mainContent = document.getElementById('main-content')
+    const message = document.createElement('h2')
+    message.textContent = 'Something went wrong loading lures 😞'
+    mainContent.appendChild(message)
   }
 }
 
