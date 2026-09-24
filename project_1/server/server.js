@@ -10,11 +10,14 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 
-app.use('/public', express.static(path.join(__dirname, 'public')))
-app.use('/scripts', express.static(path.join(__dirname, 'public/scripts')))
+// Point to the client folder one level up from the server folder
+const clientPath = path.join(__dirname, '../client')
+
+// Serve everything in the client folder as static files
+app.use(express.static(clientPath))
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'))
+  res.sendFile(path.join(clientPath, 'index.html'))
 })
 
 app.use('/lures', luresRouter)
@@ -61,7 +64,7 @@ app.get('/api/lure-images', async (req, res) => {
 })
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, 'public/404.html'))
+  res.status(404).sendFile(path.join(clientPath, '404.html'))
 })
 
 const PORT = process.env.PORT || 3001

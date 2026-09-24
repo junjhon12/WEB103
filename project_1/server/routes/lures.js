@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:lureId', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../public/lure.html'))
+  // Note the '../../' because we have to go up from routes, then out of server, then into client
+  res.status(200).sendFile(path.resolve(__dirname, '../../client/lure.html'))
 })
 
 export default router
