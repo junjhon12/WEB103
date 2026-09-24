@@ -1,20 +1,21 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-
-import lureData from '../data/lures.js'
+import LuresController from '../controllers/lures.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.status(200).json(lureData)
-})
+// API: Get all lures
+router.get('/', LuresController.getLures)
 
+// API: Get a single lure by ID
+router.get('/api/:lureId', LuresController.getLureById)
+
+// View: Serve the HTML for the lure detail page
 router.get('/:lureId', (req, res) => {
-  // Note the '../../' because we have to go up from routes, then out of server, then into client
   res.status(200).sendFile(path.resolve(__dirname, '../../client/lure.html'))
 })
 

@@ -4,15 +4,17 @@
   "description": "",
   "main": "server.js",
   "type": "module",
-  "scripts": {
-    "start": "nodemon server.js"
+    "scripts": {
+    "reset": "cd config && node --require dotenv/config reset.js",
+    "start": "npm run reset && nodemon --require dotenv/config server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^18.0.1",
+    "dotenv": "^18.0.3",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "pg": "^8.23.0"
   }
 }
